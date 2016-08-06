@@ -118,7 +118,7 @@ def updateAllStockHistMutiThread():
     pool.wait()   
     return
     
-# updateAllStockHistMutiThread()
+#updateAllStockHistMutiThread()
 # updateStockHist('000001', '1990-01-01')
 # updateStockHist('000001', '2016-08-02')  
 # updateStockHist('000001', '2016-08-04')
