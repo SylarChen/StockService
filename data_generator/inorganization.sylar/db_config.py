@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 import os
 
-os.environ['DB_URL'] = 'postgresql://postgres:sylar@127.0.0.1/postgres'
 try:
     db_url = os.environ['DB_URL'];
 except Exception:
