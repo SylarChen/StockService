@@ -1,0 +1,129 @@
+http://www.docker.org.cn/book/docker/what-is-docker-16.html
+
+-------------------------------------------------------------------------------------
+
+check linux kernel version:
+uname -v
+
+change hostname CentOS 7
+hostnamectl set-hostname <new hostname>
+
+add proxy for yum
+# vi /etc/yum.conf
+proxy=http://proxysrv:8080/
+
+remove installed docker
+yum list installed|grep docker
+yum remove docker-selinux.x86_64
+
+start docker service
+sudo service docker start
+
+check docker version
+docker version
+
+add user sylar to group docker
+sudo usermod -aG docker sylar
+
+configure docker service (docker daemon) to start automatically when linux server up
+sudo chkconfig docker on
+
+show all containers on the system, "docker ps" shows only currently running containers, -l show last container started
+docker ps -a
+
+show docker images
+docker images
+
+remove images
+docker rmi -f dc27c13c1f88
+
+build docker images includes conf files in current folder(don’t forget the . period).
+docker build -t docker-whale . 
+
+Add proxy in DockerFile
+ENV http_proxy=http://web-proxy.atl.hp.com:8080
+
+start a container
+docker start xxxxxx
+
+enter a container
+docker exec -it xxxxxx bash
+
+rename and tag a images
+docker tag a58de5494147(image id) sylarchen/docker-whale:latest
+
+centos docker config file (can add proxy)
+/etc/sysconfig/docker
+service docker restart
+
+login docker hub
+docker login --username=yourhubusername --email=youremail@company.com
+
+push images to your docker hub
+docker push sylarchen/docker-whale
+
+pull and run a images on docker hub
+docker run sylarchen/docker-whale
+
+get a ubuntu images and run hello world on it (container exit once this command executed)
+docker run ubuntu /bin/echo 'Hello world'
+
+Run an interactive container
+docker run -t -i ubuntu /bin/bash
+
+run a image background and check its output, docker logs -f works like tail -f
+docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
+docker logs container_name
+
+stop a running container
+docker stop container_name
+
+a web app image (-P means publish ports)
+$ docker run -d -P training/webapp python app.py
+
+see container port mapping
+docker port container_name
+
+inspect a container
+docker inspect container_name
+
+docker start container_name
+docker restart container_name
+docker stop container_name
+docker rm container_name
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+search images on cloud repository
+docker search postgres
+
+create a image from a container
+docker commit -m "add abc and installed vim" -a "Sylar" container_id sylarchen/sinatra
+
+build a image
+docker build -t image_name .
+
+copy files between host and container
+docker cp foo.txt mycontainer:/foo.txt
+docker cp mycontainer:/foo.txt foo.txt
+
+show all docker network
+docker network ls
+
+create a bridge network (-d means driver)
+docker network create -d bridge my-bridge-network
+
+run a postgres container and add it to my own network
+docker run -d --net=my-bridge-network --name db training/postgres
+
+remove a container from a network by disconnecting the container(defualt network is bridge)
+docker network disconnect bridge networktest
+
+format inspect to see network of some container
+docker inspect --format='{{json .NetworkSettings.Networks}}' container_name
+
+Best Practice:
+http://crosbymichael.com/dockerfile-best-practices.html
+http://crosbymichael.com/dockerfile-best-practices-take-2.html
+https://hub.docker.com/r/rabbit52/ubuntu/~/dockerfile/
+https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/

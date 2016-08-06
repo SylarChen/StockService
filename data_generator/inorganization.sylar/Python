@@ -1,0 +1,27 @@
+#can't find module 'psycopg2'
+#error: Unable to find vcvarsall.bat
+pip install psycopg2
+
+#采用python中SQLalchemy模块访问数据库（一）
+http://blog.csdn.net/linda1000/article/details/8040190
+
+#Python 向 DataFrame 添加一列，该列为同一值
+http://blog.csdn.net/bxprog/article/details/47806409
+
+#How to convert pandas index in a dataframe to a column?
+http://stackoverflow.com/questions/20461165/how-to-convert-pandas-index-in-a-dataframe-to-a-column
+
+#Removing index column in pandas
+http://stackoverflow.com/questions/20107570/removing-index-column-in-pandas
+
+#10 Minutes to pandas
+http://pandas.pydata.org/pandas-docs/stable/10min.html
+
+#Converting date/time in YYYYMMDD/HHMMSS format to Python datetime
+http://stackoverflow.com/questions/2380013/converting-date-time-in-yyyymmdd-hhmmss-format-to-python-datetime
+
+#python tutorial
+http://codingpy.com/article/python-list-comprehensions-explained-visually/
+
+#Psycopg2 doesn't like table names that start with a lower case letter
+http://stackoverflow.com/questions/2774406/psycopg2-doesnt-like-table-names-that-start-with-a-lower-case-letter
