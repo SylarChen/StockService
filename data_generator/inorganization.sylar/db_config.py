@@ -4,8 +4,7 @@ import os
 try:
     db_url = os.environ['DB_URL'];
 except Exception:
-    print('Cant find Environment Variable DB_URL')
-    return;
+    print('WARN: Cant find Environment Variable DB_URL!!!')
 print(db_url)
 ENGINE = create_engine(db_url)
 STOCK_HIST_TBALE_NAME = 'hist';
