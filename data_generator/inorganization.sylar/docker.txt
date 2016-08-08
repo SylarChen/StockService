@@ -127,3 +127,6 @@ http://crosbymichael.com/dockerfile-best-practices.html
 http://crosbymichael.com/dockerfile-best-practices-take-2.html
 https://hub.docker.com/r/rabbit52/ubuntu/~/dockerfile/
 https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+
+#create a mysql docker container
+docker run -d -p 3306:3306 --name tushare-mysql -e MYSQL_ROOT_PASSWORD=openview mysql
