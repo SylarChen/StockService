@@ -1,3 +1,0 @@
-#create a mysql docker container
-docker run -d -p 3306 --name tushare-mysql -e MYSQL_ROOT_PASSWORD=openview mysql
-
