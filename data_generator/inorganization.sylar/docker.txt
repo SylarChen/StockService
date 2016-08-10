@@ -12,6 +12,9 @@ add proxy for yum
 # vi /etc/yum.conf
 proxy=http://proxysrv:8080/
 
+add proxy for docker
+https://www.sbarjatiya.com/notes_wiki/index.php/HTTP_proxy_configuration_for_Docker_on_CentOS_7
+
 remove installed docker
 yum list installed|grep docker
 yum remove docker-selinux.x86_64
