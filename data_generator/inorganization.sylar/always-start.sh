@@ -1,5 +1,5 @@
 while true
 do
-print "check..."
+echo "check..."
 sleep 10
 done
