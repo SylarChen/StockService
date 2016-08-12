@@ -101,7 +101,7 @@ def updateAllStockHist():
     return
 
 
-updateAllStockHist()
+# updateAllStockHist()
 # removeStockHist('600276');
 # regenerateStockHist('600279')
 # regenerateStockHist('600297')
