@@ -21,4 +21,4 @@ RUN chmod +x /DG/always-start.sh
 
 #set DB url
 ENV DB_URL 'postgresql://postgres:postgres@127.0.0.1/postgres'
-ENTRYPOINT ["/bin/bash","always-start.sh"]
+ENTRYPOINT ["/bin/bash","/DG/always-start.sh"]
