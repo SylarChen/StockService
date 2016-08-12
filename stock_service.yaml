@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stock-service
+spec:
+  containers:
+  - name: data-generator
+    image: sylarchen/dg
+  - name: postgres
+    image: postgres
+    env:
+      - name: DB_PASS
+        value: postgres
+    ports:
+      - containerPort: 5432
