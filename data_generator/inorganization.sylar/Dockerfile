@@ -15,6 +15,10 @@ RUN pip install psycopg2 threadpool
 RUN mkdir -p /DG
 ADD db_config.py /DG/
 ADD data_generator.py /DG/
+ADD always-start.sh /DG/
+RUN chmod +x /DG/always-start.sh
+
 
 #set DB url
 ENV DB_URL 'postgresql://postgres:postgres@127.0.0.1/postgres'
+ENTRYPOINT ["/bin/bash","always-start.sh"]
