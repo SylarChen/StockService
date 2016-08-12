@@ -8,6 +8,7 @@ ENGINE = dbconf.ENGINE;
 
 def updateStockBasic():
     "This update all stock basic info in table STOCK_HIST_TBALE."
+    print('Going to update stock basics!');
     #get stock basic infos from tushare API
     stock_basic = ts.get_stock_basics();
     ####################################################################################
