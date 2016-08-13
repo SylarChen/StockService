@@ -27,7 +27,6 @@ ADD crontab.py /DG/
 ENV DB_URL 'postgresql://postgres:postgres@127.0.0.1/postgres'
 
 ADD myCrontab /etc/cron.d/
-RUN touch /crontabLog
 
 #add entrypoint
 ADD entrypoint.sh /

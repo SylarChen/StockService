@@ -134,5 +134,8 @@ https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
 #create a mysql docker container
 docker run -d -p 3306:3306 --name tushare-mysql -e MYSQL_ROOT_PASSWORD=openview mysql
 
-#create a postgres docker container
+#run a postgres docker container
 docker run -d -p 5432:5432 --name tushare_postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres
+
+#run data_generator container
+docker run -it -e http_proxy='http://web-proxy.chn.hp.com:8080' https_proxy='http://web-proxy.chn.hp.com:8080' DB_URL='postgresql://postgres:postgres@16.187.191.136/postgres' sylarchen/dg

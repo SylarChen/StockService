@@ -1,2 +1,2 @@
 # m h dom mon dow user  command
-*  20    * * *   root    python3 /DG/crontab.py >> /crontabLog
+*  20    * * *   root    python3 /DG/crontab.py >> "/myCronlog.$(date +%Y-%m-%d_%H:%M).log"
