@@ -72,7 +72,7 @@ def updateAllStockHist():
     for code in result:
         stockCodeList.append(code.values()[0]);
     connection.close()
-    print(stockCodeList);
+#     print(stockCodeList);
     
     #Get stock last record date 
     connection = ENGINE.connect();
@@ -95,7 +95,7 @@ def updateAllStockHist():
             lastRecordDate = '1990-01-01';
         agrsForOneStock = [stockCode, lastRecordDate]
         varsList.append((agrsForOneStock, None))
-    print(varsList)
+#     print(varsList)
     pool = threadpool.ThreadPool(20)
     requests = threadpool.makeRequests(updateStockHist, varsList)
     [pool.putRequest(req) for req in requests]
