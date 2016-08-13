@@ -33,6 +33,7 @@ def updateStockBasic():
     #save dataframe to DB without index column
     stock_basic.to_sql(dbconf.STOCK_BASIC_TBALE_NAME, ENGINE, if_exists='replace', index=False);
     ####################################################################################
+    print('stock basics updated!');
     return
 
 def updateStockHist(stockCode, lastRecordDate):
@@ -101,8 +102,9 @@ def updateAllStockHist():
     pool.wait()   
     return
 
+#updateStockBasic()
+#updateAllStockHist()
 
-# updateAllStockHist()
 # removeStockHist('600276');
 # regenerateStockHist('600279')
 # regenerateStockHist('600297')
