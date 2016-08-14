@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stock-service
+spec:
+  containers:
+  - name: data-generator
+    image: sylarchen/dg
+    env:
+      - name: DB_URL
+        value: postgresql://postgres:postgres@localhost/postgres
+#      - name: http_proxy
+#        value: http://web-proxy.chn.hp.com:8080
+#      - name: https_proxy
+#        value: http://web-proxy.chn.hp.com:8080
+  - name: postgres
+    image: postgres
+    env:
+      - name: DB_PASS
+        value: postgres
+    ports:
+      - containerPort: 5432
