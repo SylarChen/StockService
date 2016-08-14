@@ -96,7 +96,7 @@ def updateAllStockHist():
         agrsForOneStock = [stockCode, lastRecordDate]
         varsList.append((agrsForOneStock, None))
 #     print(varsList)
-    pool = threadpool.ThreadPool(20)
+    pool = threadpool.ThreadPool(2)
     requests = threadpool.makeRequests(updateStockHist, varsList)
     [pool.putRequest(req) for req in requests]
     pool.wait()   
