@@ -1,0 +1,11 @@
+#postgres dump and restore
+http://www.thegeekstuff.com/2009/01/how-to-backup-and-restore-postgres-database-using-pg_dump-and-psql/
+
+#dump whole
+pg_dump -U postgres -f ./dumpFile.sql
+
+#dump single table
+pg_dump -U postgres --host localhost --port 5432 --format plain --verbose --file "F:\DataBase\PostgreSQL\9.5\hist.data" --table public.hist
+
+#restore data to remote postgres (16.187.191.136 is remote postgres server)
+./bin/psql -U postgres --host 16.187.191.136 --port 5433 -f ./basic.data -d postgres
