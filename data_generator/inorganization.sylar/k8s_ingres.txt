@@ -1,0 +1,69 @@
+1. master节点配置
+1.1/etc/kubernetes/apiserver
+
+#默认配置已经开启了service account 如果没有，请保持跟下面一样 ，顺序不能改变
+
+KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+
+#指定密钥，（后续会手动生成密钥）
+
+KUBE_API_ARGS="--client_ca_file=/var/run/kubernetes/ca.crt --tls-private-key-file=/var/run/kubernetes/server.key --tls-cert-file=/var/run/kubernetes/server.crt --token_auth_file=/etc/kubernetes/token"
+
+1.2/etc/kubernetes/controller-manager
+
+#添加如下内容
+
+KUBE_CONTROLLER_MANAGER_ARGS="--service_account_private_key_file=/var/run/kubernetes/server.key --root-ca-file=/var/run/kubernetes/ca.crt"
+
+1.3生成密钥
+
+cd /var/run/kubernetes
+
+#注意
+
+#1）其中第一个subj里/CN可以随便写一个，而第二个subj中的/CN必须是apiserver所在机器的hostname，这里建议两个/CN不要相同，亲测相同的情况下证书是签名无效的。
+
+openssl genrsa -out ca.key 2048
+
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=abc.com" -days 5000 -out ca.crt
+
+openssl genrsa -out server.key 2048
+
+openssl req -new -key server.key -subj "/CN=vm-56-65" -out server.csr
+
+#2）必须将Kubernetes的内网IP或域名加入到server.crt
+
+#Add Cluster IP of kubernetes to server.crt
+
+subjectAltName=`kubectl get services --all-namespaces |grep 'default'|grep 'kubernetes'|grep '443'|awk '{print $3}'`
+echo subjectAltName=IP:${subjectAltName} > extfile.cnf
+
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -extfile extfile.cnf -out server.crt -days 10000
+
+1.4重启
+
+更新证书后重启 K8S 并更新 secret 和 serviceaccount
+
+kubectl get secret --all-namespaces
+
+kubectl get serviceaccount --all-namespaces
+
+查看 default 开头的 secret 和 serviceaccount，将其删除，系统会自动重新生成；
+
+如果上述操作后某些 pod 仍出现TLS握手错误，则删除相关 deployment 或者 replicant后重新部署。
+
+1.5 验证
+
+#进入master，在任意一个地方创建一个token文件如：
+
+/etc/kubernetes.io/heapster/token
+
+编辑这个token，我们只需简单写三个字符串： huang123,huang,huang
+
+重新启动apiserver，启动时加入这个参数：（前面已经加过）
+
+--token_auth_file=/etc/kubernetes.io/heapster/token
+
+在其他机子上，我们再次执行curl命令，并加上-H：
+
+curl --cacert ca.crt -X GET https://{MASTER_IP}:6443/api/v1/namespaces/default/pods -H 'Authorization: Bearer huang123' -v
