@@ -12,3 +12,6 @@ pg_dump -U postgres --host localhost --port 5432 --format plain --verbose --file
 
 #restore data in postgres container dir /postgres_data
 psql -f /postgres_data/hist.data
+
+#dump and split files
+http://tecadmin.net/backup-and-restore-database-in-postgresql/
