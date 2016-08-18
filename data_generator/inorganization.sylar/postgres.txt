@@ -9,3 +9,6 @@ pg_dump -U postgres --host localhost --port 5432 --format plain --verbose --file
 
 #restore data to remote postgres (16.187.191.136 is remote postgres server)
 ./bin/psql -U postgres --host 16.187.191.136 --port 5433 -f ./basic.data -d postgres
+
+#restore data in postgres container dir /postgres_data
+psql -f /postgres_data/hist.data
