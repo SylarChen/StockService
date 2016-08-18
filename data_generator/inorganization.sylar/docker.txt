@@ -136,7 +136,8 @@ docker run -d -p 3306:3306 --name tushare-mysql -e MYSQL_ROOT_PASSWORD=openview 
 
 #run a postgres docker container
 docker run -d -p 5432:5432 --name tushare_postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres
-docker run -d -p 5433:5432 --name tushare_postgres_init -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -v /home/sylar/postgres_data:/postgres_data postgres
+#init data in host volume must be .sql or .sh (https://hub.docker.com/_/postgres/    ---   How to extend this image)
+docker run -d -p 5435:5432 --name tushare_postgres_autoinit -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -v /home/sylar/postgres_data:/docker-entrypoint-initdb.d postgres
 
 #run data_generator container
 docker run -d -it -e http_proxy='http://web-proxy.chn.hp.com:8080' -e https_proxy='http://web-proxy.chn.hp.com:8080' -e DB_URL='postgresql://postgres:postgres@16.187.191.136/postgres' sylarchen/dg
