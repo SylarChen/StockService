@@ -4,3 +4,5 @@ http://stackoverflow.com/questions/33024969/kubernetes-rest-api
 https://github.com/kubernetes/kubernetes/issues/24668
 #K8S REST API
 http://16.187.189.90:8080/api/v1/namespaces/default/pods/
+#create pods inside a pod
+curl -H "Content-Type: application/yaml" -X POST http://16.187.189.90:8080/api/v1/namespaces/default/pods -d "$(cat pg-2.yaml)"
