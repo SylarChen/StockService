@@ -1,0 +1,3 @@
+#Using K8S Command inside pod
+https://segmentfault.com/a/1190000002937665
+http://kubernetes.io/docs/user-guide/accessing-the-cluster/#accessing-the-api-from-a-pod
