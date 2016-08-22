@@ -5,7 +5,7 @@ MAINTAINER Sylar Chen
 #ENV https_proxy 'http://web-proxy.atl.hp.com:8080'
 
 RUN apt-get update && apt-get upgrade -y && \
-apt-get install -y vim cron && \
+apt-get install -y vim cron curl && \
 apt-get install -y python3 python3-dev gcc libpq-dev python3-lxml python3-pandas python3-pip && \
 apt-get clean && rm -rf /var/lib/apt/lists/*
 
