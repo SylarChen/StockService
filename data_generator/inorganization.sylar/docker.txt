@@ -141,3 +141,6 @@ docker run -d -p 5435:5432 --name tushare_postgres_autoinit -e POSTGRES_USER=pos
 
 #run data_generator container
 docker run -d -it -e http_proxy='http://web-proxy.chn.hp.com:8080' -e https_proxy='http://web-proxy.chn.hp.com:8080' -e DB_URL='postgresql://postgres:postgres@16.187.191.136/postgres' sylarchen/dg
+
+#java web helloworld on docker
+https://yq.aliyun.com/articles/6894
