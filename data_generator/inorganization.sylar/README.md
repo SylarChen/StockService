@@ -7,5 +7,5 @@ http://tushare.waditu.com/
   2. pull docker image sylarchen/dg (https://hub.docker.com/r/sylarchen/dg/)
   3. docker run -d -e DB_URL='postgresql://postgres:postgres@16.187.191.136/postgres' sylarchen/dg
      
-     change DB_URL to your own
+     change DB_URL to your own, and may a proxy is needed.
   4. check postgres table public.hist
