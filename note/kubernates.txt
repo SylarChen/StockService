@@ -9,3 +9,5 @@ EXAMPLE: http://16.187.189.90:8080/api/v1/namespaces/default/pods/
 curl -H "Content-Type: application/yaml" -X POST http://16.187.189.90:8080/api/v1/namespaces/default/pods -d "$(cat pg-2.yaml)"
 #see rest api when use kubectrl
 kubectl --v=99 exec nginx-app-2883164633-2u2nf "ls"
+#enable bash completion for kubernetes with kubectl
+https://blog.fabric8.io/enable-bash-completion-for-kubernetes-with-kubectl-506bc89fe79e#.je6d7tbi0
